@@ -12,6 +12,10 @@
       margin: 0;
       padding: 0;
     }
+    img{
+      width: 200px;
+    }
+    
 
     #map {
       position: absolute;
@@ -30,8 +34,8 @@
       container: 'map',
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
       style: 'mapbox://styles/mapbox/outdoors-v12',
-      center: [-121.403732, 40.492392],
-      zoom: 10
+      center: [-121.95173944424741, 37.226781265333955],
+      zoom: 15
     });
 
     map.on('load', () => {
@@ -49,6 +53,7 @@
               "properties": {
                 'name': "my first popup",
                 'description': "Area in where I would work",
+                'image':"img/image3.png",
               }
             },
             {
@@ -60,6 +65,7 @@
               "properties": {
                 'name': "my 2nd popup",
                 'description': "Base on where I would work",
+                'image':"img/image2.png",
               }
             },
             {
@@ -71,6 +77,7 @@
               "properties": {
                 'name': "my 3rd popup",
                 'description': "Used to walk there when I to a coding program",
+                'image':"img/image1.png",
               }
             }
           ]
@@ -97,10 +104,11 @@
         const coordinates = e.feature.geometry.coordinates.slice();
         const name = e.feature.properties.name;
         const description = e.feature.properties.description;
+        const image = e.feature.properties.image;
 
         new mapboxgl.Popup()
           .setLngLat(coordinates)
-          .setHTML("<br><strong>" + name + "</strong><br/>" + description)
+          .setHTML("<img src='" + image + "'><br><strong>" + name + "</strong><br/>" + description)
           .addTo(map);
       }
     });
